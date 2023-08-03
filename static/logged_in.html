@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OIDC Request</title>
+</head>
+<body>
+    <h1>Welcome ===NAME===</h1>
+    <button id="logoutBtn">Logout</button>
+    <button id="getBananaBtn">Get Banana</button>
+    <div><pre id="bananaElem"></pre></div>
+    <script>
+
+        const logoutBtn = document.getElementById('logoutBtn')
+        const getBananaBtn = document.getElementById('getBananaBtn')
+        const bananaElem = document.getElementById('bananaElem')
+
+        logoutBtn.addEventListener('click', () => {
+            window.location.href = "/logout"
+        });
+        getBananaBtn.addEventListener('click', async () => {
+            const response = await fetch("/get_banana");
+            const data = await response.json();
+            bananaElem.innerHTML = data;
+        });
+    </script>
+</body>
+</html>
+
