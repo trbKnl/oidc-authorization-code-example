@@ -39,15 +39,15 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 @app.get("/get_ascii_banana")
 async def get_ascii_banana(access_token: Annotated[str, Depends(oauth2_scheme)]):
     """
-    FastApi helps us with the oauth2_scheme
+    FastApi helps us with the 'oauth2_scheme'
     The access_token will be equal to the Bearer token in the request.
 
     If a Bearer token was supplied, the function body begins:
-    1. Get the signing key id and the encryption algorithm, that the jwt has been signed with
-    2. Get that signing key from the oidc provider
-    3. Verify and decode the jwt
-    4. Verify if the jwt has the correct banaan-scope 
-    5. On success return the banana
+    1. Get the signing key id and the encryption algorithm that the jwt (access token) has been signed with
+    2. Get the actual signing key from the oidc provider
+    3. Validate and decode the jwt
+    4. Verify if the jwt has the banaan-scope 
+    5. On success return the ascii banana
     """
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
