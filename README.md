@@ -1,6 +1,12 @@
 # OIDC Oauth2 Authorization code flow with PCKE challenge
 
+
 This repostitory contains a full example of an authorization code flow with FastAPI in Python.
+
+It contains:
+
+- A client application
+-
 
 ```
 /\
@@ -26,7 +32,7 @@ Create virtual env and install dependencies: `pip -r requirements.txt`.
 
 The repostitory contains a client application called `client.py`. Its a FastAPI webapplication that:
 
-- Logs users in with an identity provider you configured yourself (see ref)
+- Logs users in with an identity provider you configured yourself
 - After log in, users can try access a protected resource (an ascii banana), after succesfull authorization the result is displayed on screen
 
 Start the client with:  `python3 -m uvicorn client:app --reload --log-level debug`
@@ -39,13 +45,13 @@ Start the API with: `python3 -m uvicorn banana_resource:app --port 8123 --reload
 
 ## Identity provider that supports OpenID Connect 
 
-I did not create this identity provider myself, I relied upon an (existing identity provider)[https://github.com/Soluto/oidc-server-mock]. its an implementation of (Duende IdentityServer)[https://duendesoftware.com/products/identityserver], which is only free for non-commercial projects such as these.
+I did not create this identity provider myself, I relied upon an [existing identity provider](https://github.com/Soluto/oidc-server-mock). its an implementation of [Duende IdentityServer](https://duendesoftware.com/products/identityserver), which is only free for non-commercial projects such as these.
 
 ### Usage
 
 Pull the docker version of the identity provider.
 
-Create the following configurations for the identity provider:
+Create the following configuration files for the identity provider:
 
 #### `./client-config.json`
 
@@ -123,5 +129,4 @@ docker run -p 80:80 -e API_SCOPES_INLINE="$(cat ./api-scopes.yaml)" -e CLIENTS_C
 ```
 
 Go to `http://localhost:80` to see the identity server in action.
-
 
