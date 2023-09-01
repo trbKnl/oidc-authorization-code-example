@@ -1,12 +1,13 @@
 # OIDC Oauth2 Authorization code flow with PCKE challenge
 
 
-This repostitory contains a full example of an authorization code flow with FastAPI in Python.
+This repository contains a full example of an authorization code flow with FastAPI in Python.
 
 It contains:
 
-- A client application
--
+- A client application. Persons that are known to the identity provider can log into the client application and access a protected API
+- A protected API
+- An example of an implementation of an identity server that supports open id connect. I use an implementation of [Duende IdentityServer](https://duendesoftware.com/products/identityserver). This is not free software but can be used for personal test projects.
 
 ```
 /\
@@ -30,16 +31,16 @@ Create virtual env and install dependencies: `pip -r requirements.txt`.
 
 ## Client application
 
-The repostitory contains a client application called `client.py`. Its a FastAPI webapplication that:
+The repository contains a client application called `client.py`. Its a FastAPI web application that:
 
 - Logs users in with an identity provider you configured yourself
-- After log in, users can try access a protected resource (an ascii banana), after succesfull authorization the result is displayed on screen
+- After log in, users can try access a protected resource (an ascii banana), after successful authorization the result is displayed on screen
 
 Start the client with:  `python3 -m uvicorn client:app --reload --log-level debug`
 
-## Protected resouce API
+## Protected resource API
 
-The repostitory also contains a protected resource in the form of an API. It returns an ascii banana if the user supplies a valid access token with the correct scope.
+The repository also contains a protected resource in the form of an API. It returns an ascii banana if the user supplies a valid access token with the correct scope.
 
 Start the API with: `python3 -m uvicorn banana_resource:app --port 8123 --reload --log-level debug`
 
@@ -114,7 +115,7 @@ In this configuration you specify all the users that your identity providers kno
 
 #### `./api-scopes.yaml`
 
-A custom scope that our procted resource will use
+A custom scope that our protected resource will use
 
 ```
 - Name: banaan-scope
